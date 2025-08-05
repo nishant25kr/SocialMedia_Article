@@ -79,28 +79,29 @@ export class Service {
             )
 
         } catch (error) {
-            console.log("Error in get post:",error);
+            console.log("Error in get post:", error);
             return false;
         }
     }
 
-    async getPosts(queries = [Query.equal("status","active")]){
+    async getPosts(queries = [Query.equal("status", "active")]) {
         try {
-            return await this.databases.listDocuments{
+            return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries,
                 100
-            }
-            
+            );
+
+
         } catch (error) {
-            console.log("Error in get posts:",error)
+            console.log("Error in get posts:", error)
         }
     }
 
     // file uplode
 
-    async uplodefile(file){
+    async uplodefile(file) {
         try {
 
             return await this.bucket.createFile(
@@ -110,12 +111,12 @@ export class Service {
             )
 
         } catch (error) {
-            console.log("Error in file uploading,",error)
+            console.log("Error in file uploading,", error)
             return false
         }
     }
 
-    async deletefile(fileId){
+    async deletefile(fileId) {
         try {
             await this.bucket.deleteFile(
                 conf.appwriteBucketId,
@@ -124,12 +125,12 @@ export class Service {
 
             return true
         } catch (error) {
-            console.log("Error in delete file,",error)
+            console.log("Error in delete file,", error)
             return false
         }
     }
 
-    async getfilePreview(fileId){
+    async getfilePreview(fileId) {
         return this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId
