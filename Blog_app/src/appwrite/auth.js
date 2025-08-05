@@ -1,5 +1,5 @@
 import conf from "../conf/conf";
-import { Client, Account, Id } from "appwrite"
+import { Client, Account, ID } from "appwrite"
 
 export class AuthService {
     client = new Client();
@@ -8,14 +8,14 @@ export class AuthService {
     constructor() {
         this.client
             .setEndpoint(conf.appwriteUrl)
-            .setProject(conf.appwriteProjectId)
+            .setProject(conf.appwriteProjectID)
 
         this.account = new Account(this.client)
     }
 
     async createAccount({ email, password, name }) {
         try {
-            const userAccount = await this.account.create(Id.unique(), email, password, name)
+            const userAccount = await this.account.create(ID.unique(), email, password, name)
             if (userAccount) {
                 //call another method
                 return this.login({ email, password })
@@ -37,7 +37,7 @@ export class AuthService {
         }
     }
 
-    async currentUser() {
+    async getcurrentUser() {
         try {
             return await this.account.get()
         } catch (error) {
@@ -59,4 +59,4 @@ export class AuthService {
 
 const authService = new AuthService();
 
-export default AuthService;
+export default authService;
