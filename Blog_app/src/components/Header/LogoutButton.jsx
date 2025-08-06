@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import authService from "../../appwrite/auth";
+import authService from "../../appwrite/config";
 import { logout } from "../../store/authSlice";
 
 function LogoutButton() {
@@ -15,7 +15,10 @@ function LogoutButton() {
       });
   };
   return (
-    <button className="px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-300 ease-in-out">
+    <button
+      className="px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-300 ease-in-out" onClick={logoutHandler}
+    >
+
       Logout
     </button>
   );
